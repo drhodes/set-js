@@ -111,17 +111,17 @@ Set.prototype.remove = function(el){
 
 Set.prototype.differenceUpdate = function(other){
     // Remove all elements of the other set from this set.
-    for( var item in other.store ){
-        this.remove(item);
+    for( var el in other.store ){
+        this.remove(el);
     }
     return this;
 }
 
 Set.prototype.foreach = function(fn){
-    // apply fn to each item and return as set containing the result of each application.
+    // apply fn to each el and return as set containing the result of each application.
     var result = new Set();
-    for( var item in this.store ){
-        result.add( fn(item) );
+    for( var el in this.store ){
+        result.add( fn(el) );
     }
     return result;
 }
