@@ -1,6 +1,4 @@
-Derek Rhodes - 
-
-Provides the following methods for a type Set.
+A Set data type with the following methods.
 
   + add
   + clear
@@ -19,4 +17,8 @@ Provides the following methods for a type Set.
   + symmetricDifference
   + union
   + unionUpdate
-
+  	
+  still need to add:
+  fromList  (to instantiate from a list)
+  toList    (to makes a list)
+  
