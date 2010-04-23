@@ -154,8 +154,6 @@ s2.add(1);
 assert.ok(s1.isSubset(s2));
 assert.ok(!s2.isSubset(s1));
 
-
-
 //-------------------------------------------------
 // isSuperset
 s1.clear();
@@ -171,3 +169,11 @@ s2.add(1);
 
 assert.ok(s2.isSuperset(s1));
 assert.ok(!s1.isSuperset(s2));
+
+
+
+var temp = s2.union(s1);
+
+
+sys.puts(s2.union(s3).add(4));
+sys.puts("All passed.");

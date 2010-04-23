@@ -1,25 +1,29 @@
-var sys = require('sys');
+/*  A set object for javascript.
+ *
+ *  Derek Rhodes
+ *  under the terms of either the MIT License or the GNU General Public License (GPL) Version 2.
+ *
+ example:
 
-// A set object for javascript.
-/*
-  + add
-  + clear
-  + copy
-  + contains
-  + difference
-  + differenceUpdate
-  + foreach
-  + intersection
-  + intersectionUpdate
-  + isDisjoint
-  + isSubset
-  + isSuperset
-  + remove
-  + size
-  + symmetricDifference
-  // symmetricDifferenceUpdate
-  + union
-  + unionUpdate
+
+ + add
+ + clear
+ + copy
+ + contains
+ + difference
+ + differenceUpdate
+ + foreach
+ + intersection
+ + intersectionUpdate
+ + isDisjoint
+ + isSubset
+ + isSuperset
+ + remove
+ + size
+ + symmetricDifference
+ // symmetricDifferenceUpdate
+ + union
+ + unionUpdate
 */
 
 Set = function(){
@@ -58,17 +62,18 @@ Set.prototype.copy = function(){
 }
 
 Set.prototype.clone = function(){
-    // return a deep copy of a set.
+    // return a clone of a set.
     // this function stolen from ConroyP @ stackoverflow
     // http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-clone-a-javascript-object
     function clone(obj){
+
         if(obj == null || typeof(obj) != 'object')
             return obj;
 
         var temp = obj.constructor();
 
-        for(var key in obj)
-            temp[key] = clone(obj[key]);
+            for(var key in obj)
+                temp[key] = clone(obj[key]);
         return temp;
     }
 
@@ -170,7 +175,7 @@ Set.prototype.symmetricDifference = function(){
 
 Set.prototype.union = function(other){
     // return a set containing all elements from both sets.
-    var result = this.copy();
+    var result = this.clone();
     for (var el in other.store){
         result.add(el);
     }
@@ -183,6 +188,14 @@ Set.prototype.unionUpdate = function(other){
         this.add(el);
     }
     return this;
+}
+
+Set.prototype.toString = function(){
+    var result = [];
+    for (var el in this.store){
+        result.push(el.toString());
+    }
+    return "Set<"+ result.join(", ") + ">";
 }
 
 exports.Set = Set;
