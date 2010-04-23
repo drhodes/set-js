@@ -216,5 +216,4 @@ Set.prototype.toString = function(){
     return "Set<"+ result.join(", ") + ">";
 };
 
-//var exports = {};
 exports.Set = Set;
