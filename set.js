@@ -54,8 +54,8 @@ Set.prototype.contains = function(val){
 Set.prototype.copy = function(){
     // returns a shallow copy of a set.
     var temp = new Set();
-    for (var key in this.store){
-        temp.add(this.store(key));
+    for (var el in this.store){
+        temp.add(this.store(el));
     }
     return temp;
 }
@@ -71,8 +71,8 @@ Set.prototype.clone = function(){
 
         var temp = obj.constructor();
 
-            for(var key in obj)
-                temp[key] = clone(obj[key]);
+            for(var el in obj)
+                temp[el] = clone(obj[el]);
         return temp;
     }
 
@@ -92,9 +92,9 @@ Set.prototype.difference = function(other){
     // Return the difference of this set and the other
     // i.e. all elements that are in this set but not the other
     var diff = new Set();
-    for (var key in this.store){
-        if (!other.contains(key)){
-            diff.add(key);
+    for (var el in this.store){
+        if (!other.contains(el)){
+            diff.add(el);
         }
     }
     return diff;
