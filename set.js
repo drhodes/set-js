@@ -29,9 +29,10 @@
  + remove
  + size
  + symmetricDifference
- // symmetricDifferenceUpdate
  + union
  + unionUpdate
+ + fromArray
+ + toArray
 */
 
 Set = function(){
@@ -45,6 +46,20 @@ Set.prototype.add = function(val){
         this.length__ += 1;
     }
     return this;
+}
+
+Set.prototype.fromArray = function(arr){
+  for (var el in arr){
+      this.add(el);
+  }
+}
+
+Set.prototype.toArray = function(){
+    var arr = [];
+    for (var el in this.store){
+        arr.push(el);
+    }
+    return arr;
 }
 
 Set.prototype.clear = function(){
