@@ -43,7 +43,7 @@ Set.prototype.fromArray = function(arr){
     // instantiate a set given an array
     for (var el in arr){
         this.add(arr[el]);
-    }
+    };
     return this;
 }
 
@@ -52,7 +52,7 @@ Set.prototype.toArray = function(){
     var arr = [];
     for (var el in this.store){
         arr.push(el);
-    }
+    };
     return arr;
 }
 
@@ -73,7 +73,7 @@ Set.prototype.copy = function(){
     var temp = new Set();
     for (var el in this.store){
         temp.add(this.store(el));
-    }
+    };
     return temp;
 }
 
@@ -82,14 +82,16 @@ Set.prototype.clone = function(){
     // this function stolen from ConroyP @ stackoverflow
     // http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-clone-a-javascript-object
     function clone(obj){
-
-        if(obj == null || typeof(obj) != 'object')
+        if(obj == null || typeof(obj) != 'object'){
             return obj;
+        }
 
         var temp = obj.constructor();
 
-            for(var el in obj)
-                temp[el] = clone(obj[el]);
+        for(var el in obj){
+            temp[el] = clone(obj[el]);
+        };
+
         return temp;
     }
 
@@ -113,7 +115,7 @@ Set.prototype.difference = function(other){
         if (!other.contains(el)){
             diff.add(el);
         }
-    }
+    };
     return diff;
 }
 
@@ -130,7 +132,7 @@ Set.prototype.differenceUpdate = function(other){
     // Remove all elements of the other set from this set.
     for( var el in other.store ){
         this.remove(el);
-    }
+    };
     return this;
 }
 
@@ -139,7 +141,7 @@ Set.prototype.foreach = function(fn){
     var result = new Set();
     for( var el in this.store ){
         result.add( fn(el) );
-    }
+    };
     return result;
 }
 
@@ -150,7 +152,7 @@ Set.prototype.intersection = function(other){
         if (other.contains(el)){
             result.add(el);
         }
-    }
+    };
     return result;
 }
 
@@ -160,7 +162,7 @@ Set.prototype.intersectionUpdate = function(other){
         if (!other.contains(el)){
             this.remove(el);
         }
-    }
+    };
     return this;
 }
 
@@ -175,7 +177,7 @@ Set.prototype.isSubset = function(other){
         if (!other.contains(el)){
             return false;
         }
-    }
+    };
     return true;
 }
 
@@ -194,7 +196,7 @@ Set.prototype.union = function(other){
     var result = this.clone();
     for (var el in other.store){
         result.add(el);
-    }
+    };
     return result;
 }
 
@@ -202,7 +204,7 @@ Set.prototype.unionUpdate = function(other){
     // return a set containing all elements from both sets.
     for (var el in other.store){
         this.add(el);
-    }
+    };
     return this;
 }
 
@@ -210,7 +212,7 @@ Set.prototype.toString = function(){
     var result = [];
     for (var el in this.store){
         result.push(el.toString());
-    }
+    };
     return "Set<"+ result.join(", ") + ">";
 }
 
