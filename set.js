@@ -51,8 +51,9 @@ Set.prototype.add = function(val){
 Set.prototype.fromArray = function(arr){
     // instantiate a set given an array
     for (var el in arr){
-        this.add(el);
+        this.add(arr[el]);
     }
+    return this;
 }
 
 Set.prototype.toArray = function(){

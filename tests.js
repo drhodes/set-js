@@ -170,17 +170,15 @@ s2.add(1);
 assert.ok(s2.isSuperset(s1));
 assert.ok(!s1.isSuperset(s2));
 
+//-------------------------------------------------
+// fromArray
+s1.clear();
+s2.clear();
 
+s1.add(1).add(2).add(3);
+s2.fromArray([1,2,3]);
 
-var temp = s2.union(s1);
+assert.ok(s1.isSubset(s2));
+assert.ok(s2.isSubset(s1));
 
-var set1 = new Set()
-var set2 = new Set()
-set1.add(1).add(2).add(3)
-set2.add(3).add(4).add(5)
-
-sys.puts(set1.union(set2));
-sys.puts(set1.intersection(set2));
-
-sys.puts(s2.union(s3).add(4));
 sys.puts("All passed.");
