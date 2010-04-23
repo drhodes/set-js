@@ -2,7 +2,7 @@
  *  Derek Rhodes, physci@gmail.com
  *
  *  under the terms of either the MIT License or the GNU General Public License (GPL) Version 2.
- 
+
  + add
  + clear
  + copy
@@ -72,7 +72,7 @@ Set.prototype.copy = function(){
     // returns a shallow copy of a set.
     var temp = new Set();
     for (var el in this.store){
-        temp.add(this.store(el));
+        temp.add(el);
     }
     return temp;
 };

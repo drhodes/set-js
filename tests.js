@@ -34,6 +34,22 @@ s1
 assert.equal(s1.size(), 3);
 assert.equal(s1.clone().size(), 3);
 
+
+//------------------------------------------------------
+// copy
+s1.clear();
+s1
+    .add(1)
+    .add(2)
+    .add(3);
+
+s2.clear();
+s2 = s1.copy();
+
+assert.ok(s1.isSubset(s2));
+assert.ok(s2.isSubset(s1));
+
+
 //------------------------------------------------------
 // diff
 s1.clear();
@@ -51,6 +67,11 @@ assert.ok(s1.difference(s2).contains(3));
 assert.ok(!s1.difference(s2).contains(2));
 assert.ok(!s1.difference(s2).contains(1));
 assert.ok(s1.difference(s2).size() == 1);
+
+
+
+
+
 
 //------------------------------------------------------
 // remove
