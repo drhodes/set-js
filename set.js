@@ -29,7 +29,7 @@
 Set = function(){
     this.store = {};
     this.length__ = 0;
-}
+};
 
 Set.prototype.add = function(val){
     if (!this.contains(val)){
@@ -37,22 +37,22 @@ Set.prototype.add = function(val){
         this.length__ += 1;
     }
     return this;
-}
+};
 
 Set.prototype.fromArray = function(arr){
     // instantiate a set given an array
     for (var el in arr){
         this.add(arr[el]);
-    };
+    }
     return this;
-}
+};
 
 Set.prototype.toArray = function(){
     // push all the elements from the set into an array
     var arr = [];
     for (var el in this.store){
         arr.push(el);
-    };
+    }
     return arr;
 }
 
@@ -61,21 +61,21 @@ Set.prototype.clear = function(){
     this.store = {};
     this.length__ = 0;
     return this;
-}
+};
 
 Set.prototype.contains = function(val){
     // return true is this set contains val.
     return (val in this.store);
-}
+};
 
 Set.prototype.copy = function(){
     // returns a shallow copy of a set.
     var temp = new Set();
     for (var el in this.store){
         temp.add(this.store(el));
-    };
+    }
     return temp;
-}
+};
 
 Set.prototype.clone = function(){
     // return a clone of a set.
@@ -90,21 +90,21 @@ Set.prototype.clone = function(){
 
         for(var el in obj){
             temp[el] = clone(obj[el]);
-        };
+        }
 
         return temp;
-    }
+    };
 
     var clonedSet = new Set();
     clonedSet.length__ = this.length__;
     clonedSet.store = clone(this.store);
     return clonedSet;
-}
+};
 
 Set.prototype.size = function(){
     // returns the number of elements contained in the set
     return this.length__;
-}
+};
 
 
 Set.prototype.difference = function(other){
@@ -115,9 +115,9 @@ Set.prototype.difference = function(other){
         if (!other.contains(el)){
             diff.add(el);
         }
-    };
+    }
     return diff;
-}
+};
 
 Set.prototype.remove = function(el){
     // Remove an element from a set;
@@ -126,24 +126,24 @@ Set.prototype.remove = function(el){
         this.length__ -= 1;
     }
     return this;
-}
+};
 
 Set.prototype.differenceUpdate = function(other){
     // Remove all elements of the other set from this set.
     for( var el in other.store ){
         this.remove(el);
-    };
+    }
     return this;
-}
+};
 
 Set.prototype.foreach = function(fn){
     // apply fn to each el and return as set containing the result of each application.
     var result = new Set();
     for( var el in this.store ){
         result.add( fn(el) );
-    };
+    }
     return result;
-}
+};
 
 Set.prototype.intersection = function(other){
     // returns a set which contains elements common to this and the other
@@ -152,9 +152,9 @@ Set.prototype.intersection = function(other){
         if (other.contains(el)){
             result.add(el);
         }
-    };
+    }
     return result;
-}
+};
 
 Set.prototype.intersectionUpdate = function(other){
     // mutates this set to contain only elements common to this and the other
@@ -162,14 +162,14 @@ Set.prototype.intersectionUpdate = function(other){
         if (!other.contains(el)){
             this.remove(el);
         }
-    };
+    }
     return this;
-}
+};
 
 Set.prototype.isDisjoint = function(other){
     // return true if two sets have a null intersection.
     return this.intersection(other).size() == 0;
-}
+};
 
 Set.prototype.isSubset = function(other){
     // return true if every element in this set is contained in other
@@ -177,43 +177,44 @@ Set.prototype.isSubset = function(other){
         if (!other.contains(el)){
             return false;
         }
-    };
+    }
     return true;
-}
+};
 
 Set.prototype.isSuperset = function(other){
     // return true if this every element in other is contained in this
     return other.isSubset(this);
-}
+};
 
 Set.prototype.symmetricDifference = function(){
     // return elements unique to both sets.
     return this.union(other).difference(this.intersection(other));
-}
+};
 
 Set.prototype.union = function(other){
     // return a set containing all elements from both sets.
     var result = this.clone();
     for (var el in other.store){
         result.add(el);
-    };
+    }
     return result;
-}
+};
 
 Set.prototype.unionUpdate = function(other){
     // return a set containing all elements from both sets.
     for (var el in other.store){
         this.add(el);
-    };
+    }
     return this;
-}
+};
 
 Set.prototype.toString = function(){
     var result = [];
     for (var el in this.store){
         result.push(el.toString());
-    };
+    }
     return "Set<"+ result.join(", ") + ">";
-}
+};
 
+//var exports = {};
 exports.Set = Set;
