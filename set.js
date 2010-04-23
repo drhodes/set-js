@@ -1,0 +1,188 @@
+var sys = require('sys');
+
+// A set object for javascript.
+/*
+  + add
+  + clear
+  + copy
+  + contains
+  + difference
+  + differenceUpdate
+  + foreach
+  + intersection
+  + intersectionUpdate
+  + isDisjoint
+  + isSubset
+  + isSuperset
+  + remove
+  + size
+  + symmetricDifference
+  // symmetricDifferenceUpdate
+  + union
+  + unionUpdate
+*/
+
+Set = function(){
+    this.store = {};
+    this.length__ = 0;
+}
+
+Set.prototype.add = function(val){
+    if (this.contains(val)){
+        return this;
+    }
+    this.store[val] = true;
+    this.length__ += 1;
+    return this;
+}
+
+Set.prototype.clear = function(){
+    // removes all elements from the set.
+    this.store = {};
+    this.length__ = 0;
+    return this;
+}
+
+Set.prototype.contains = function(val){
+    // return true is this set contains val.
+    return (val in this.store);
+}
+
+Set.prototype.copy = function(){
+    // returns a shallow copy of a set.
+    var temp = new Set();
+    for (var key in this.store){
+        temp.add(this.store(key));
+    }
+    return temp;
+}
+
+Set.prototype.clone = function(){
+    // return a deep copy of a set.
+    // this function stolen from ConroyP @ stackoverflow
+    // http://stackoverflow.com/questions/122102/what-is-the-most-efficient-way-to-clone-a-javascript-object
+    function clone(obj){
+        if(obj == null || typeof(obj) != 'object')
+            return obj;
+
+        var temp = obj.constructor();
+
+        for(var key in obj)
+            temp[key] = clone(obj[key]);
+        return temp;
+    }
+
+    var clonedSet = new Set();
+    clonedSet.length__ = this.length__;
+    clonedSet.store = clone(this.store);
+    return clonedSet;
+}
+
+Set.prototype.size = function(){
+    // returns the number of elements contained in the set
+    return this.length__;
+}
+
+
+Set.prototype.difference = function(other){
+    // Return the difference of this set and the other
+    // i.e. all elements that are in this set but not the other
+    var diff = new Set();
+    for (var key in this.store){
+        if (!other.contains(key)){
+            diff.add(key);
+        }
+    }
+    return diff;
+}
+
+Set.prototype.remove = function(el){
+    // Remove an element from a set;
+    if (el in this.store){
+        delete this.store[el];
+        this.length__ -= 1;
+    }
+    return this;
+}
+
+Set.prototype.differenceUpdate = function(other){
+    // Remove all elements of the other set from this set.
+    for( var item in other.store ){
+        this.remove(item);
+    }
+    return this;
+}
+
+Set.prototype.foreach = function(fn){
+    // apply fn to each item and return as set containing the result of each application.
+    var result = new Set();
+    for( var item in this.store ){
+        result.add( fn(item) );
+    }
+    return result;
+}
+
+Set.prototype.intersection = function(other){
+    // returns a set which contains elements common to this and the other
+    var result = new Set();
+    for (var el in this.store){
+        if (other.contains(el)){
+            result.add(el);
+        }
+    }
+    return result;
+}
+
+Set.prototype.intersectionUpdate = function(other){
+    // mutates this set to contain only elements common to this and the other
+    for (var el in this.store){
+        if (!other.contains(el)){
+            this.remove(el);
+        }
+    }
+    return this;
+}
+
+Set.prototype.isDisjoint = function(other){
+    // return true if two sets have a null intersection.
+    return this.intersection(other).size() == 0;
+}
+
+Set.prototype.isSubset = function(other){
+    // return true if every element in this set is contained in other
+    for( var el in this.store ){
+        if (!other.contains(el)){
+            return false;
+        }
+    }
+    return true;
+}
+
+Set.prototype.isSuperset = function(other){
+    // return true if this every element in other is contained in this
+    return other.isSubset(this);
+}
+
+Set.prototype.symmetricDifference = function(){
+    // return elements unique to both sets.
+    return this.union(other).difference(this.intersection(other));
+}
+
+Set.prototype.union = function(other){
+    // return a set containing all elements from both sets.
+    var result = this.copy();
+    for (var el in other.store){
+        result.add(el);
+    }
+    return result;
+}
+
+Set.prototype.unionUpdate = function(other){
+    // return a set containing all elements from both sets.
+    for (var el in other.store){
+        this.add(el);
+    }
+    return this;
+}
+
+exports.Set = Set;
