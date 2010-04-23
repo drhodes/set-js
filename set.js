@@ -1,8 +1,8 @@
 /*  A set object for javascript.
+ *  Derek Rhodes, physci@gmail.com
  *
- *  Derek Rhodes
  *  under the terms of either the MIT License or the GNU General Public License (GPL) Version 2.
- *
+ 
  + add
  + clear
  + copy
@@ -168,7 +168,7 @@ Set.prototype.intersectionUpdate = function(other){
 
 Set.prototype.isDisjoint = function(other){
     // return true if two sets have a null intersection.
-    return this.intersection(other).size() == 0;
+    return this.intersection(other).size() === 0;
 };
 
 Set.prototype.isSubset = function(other){
