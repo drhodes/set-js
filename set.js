@@ -3,16 +3,16 @@
  *  Derek Rhodes
  *  under the terms of either the MIT License or the GNU General Public License (GPL) Version 2.
  *
- example:
- var set1 = new Set()
- var set2 = new Set()
- set1.add(1).add(2).add(3)
- set2.add(3).add(4).add(5)
-
- set1.union(set2)        => Set<1, 2, 3, 4, 5>
- set1.intersection(set2) => Set<3>
-
- see tests.js for more examples;
+- example:
+- var set1 = new Set()
+- var set2 = new Set()
+- set1.add(1).add(2).add(3)
+- set2.add(3).add(4).add(5)
+-
+- set1.union(set2)        => Set<1, 2, 3, 4, 5>
+- set1.intersection(set2) => Set<3>
+-
+- see tests.js for more examples;
 
  + add
  + clear
