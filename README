@@ -7,6 +7,7 @@ A Set data type with the following methods.
   + difference
   + differenceUpdate
   + foreach
+  + fromList
   + intersection
   + intersectionUpdate
   + isDisjoint
@@ -15,12 +16,9 @@ A Set data type with the following methods.
   + remove
   + size
   + symmetricDifference
+  + toList  	
   + union
   + unionUpdate
-  	
-  still need to add:
-  fromList  (to instantiate from a list)
-  toList    (to makes a list)
   
 - example:
 - var set1 = new Set()
