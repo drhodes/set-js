@@ -174,11 +174,16 @@ assert.ok(!s1.isSuperset(s2));
 // fromArray
 s1.clear();
 s2.clear();
+s3.clear();
 
 s1.add(1).add(2).add(3);
 s2.fromArray([1,2,3]);
+s3.fromArray(s2.toArray());
 
 assert.ok(s1.isSubset(s2));
 assert.ok(s2.isSubset(s1));
+assert.ok(s3.isSubset(s2));
+assert.ok(s2.isSubset(s3));
+
 
 sys.puts("All passed.");
