@@ -174,6 +174,13 @@ assert.ok(!s1.isSuperset(s2));
 
 var temp = s2.union(s1);
 
+var set1 = new Set()
+var set2 = new Set()
+set1.add(1).add(2).add(3)
+set2.add(3).add(4).add(5)
+
+sys.puts(set1.union(set2));
+sys.puts(set1.intersection(set2));
 
 sys.puts(s2.union(s3).add(4));
 sys.puts("All passed.");
