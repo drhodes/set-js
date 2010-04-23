@@ -32,11 +32,10 @@ Set = function(){
 }
 
 Set.prototype.add = function(val){
-    if (this.contains(val)){
-        return this;
+    if (!this.contains(val)){
+        this.store[val] = true;
+        this.length__ += 1;
     }
-    this.store[val] = true;
-    this.length__ += 1;
     return this;
 }
 
