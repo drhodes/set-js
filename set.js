@@ -22,8 +22,6 @@
  + toArray
  + union
  + unionUpdate
- + fromArray
- + toArray
 */
 
 Set = function(){
