@@ -208,10 +208,20 @@ Set.prototype.unionUpdate = function(other){
 
 Set.prototype.toString = function(){
     var result = [];
+    var limit = 10;
     for (var el in this.store){
         result.push(el.toString());
+
+        limit -= 1;
+        if( limit <= 0){
+            result.push("...");
+            break;
+        }
     }
     return "Set<"+ result.join(", ") + ">";
 };
 
-exports.Set = Set;
+
+try {
+    exports.Set = Set;
+} catch(err){}
