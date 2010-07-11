@@ -27,12 +27,14 @@
 Set = function(){
     this.store = {};
     this.length__ = 0;
+    this.cachedArray__ = [];
 };
 
 Set.prototype.add = function(val){
     if (!this.contains(val)){
         this.store[val] = true;
         this.length__ += 1;
+        if(this.cachedArray__ !== null) this.cachedArray__.push(val);
     }
     return this;
 };
@@ -42,15 +44,19 @@ Set.prototype.fromArray = function(arr){
     for (var el in arr){
         this.add(arr[el]);
     }
+    this.cachedArray__ = arr;
     return this;
 };
 
 Set.prototype.toArray = function(){
-    // push all the elements from the set into an array
+    if(this.cachedArray__ !== null) return this.cachedArray__;
+
+    // push all the elements from the set into an array if it isn't cached
     var arr = [];
     for (var el in this.store){
         arr.push(el);
     }
+    this.cachedArray__ = arr;
     return arr;
 }
 
@@ -58,6 +64,7 @@ Set.prototype.clear = function(){
     // removes all elements from the set.
     this.store = {};
     this.length__ = 0;
+    this.cachedArray__ = null;
     return this;
 };
 
@@ -123,6 +130,8 @@ Set.prototype.remove = function(el){
         delete this.store[el];
         this.length__ -= 1;
     }
+    // Don't bother remove from the cached array, just clear it
+    this.cachedArray__ = null;
     return this;
 };
 
